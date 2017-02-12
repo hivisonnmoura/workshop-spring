@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-	<title>AlgaWorks</title>
+	<title>Oficina Spring</title>
 
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}"/>
@@ -46,11 +46,11 @@
 	    </div>
 
 	    <ul class="nav navbar-nav  navbar-right">
-	    
-	   
+
+
 	      <li>
 	        <a href="#"><em class="fa  fa-sign-out"></em></a>
-	      </li> 
+	      </li>
 	    </ul>
 
 	  </div>
@@ -65,7 +65,7 @@
         <li class="aw-menu__item is-active">
           <a href="dashboard.html"><i class="fa  fa-fw  fa-home"></i><span>Cadastro vinho</span></a>
         </li>
-        
+
          <li class="aw-menu__item">
           <a href="dashboard.html"><i class="fa  fa-fw  fa-home"></i><span>Pesquisa vinho</span></a>
         </li>
@@ -88,23 +88,22 @@
 </div>
 
 <div class="container-fluid">
-
-
-
 	<form method="POST" class="form-vertical  js-form-loading" th:object="${vinho}">
-	  	<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<th:block th:each="error : ${#fields.detailedErrors()}">
-			<div>
-				<i class="fa  fa-exclamation-circle"></i>
-				<span th:text="${error.message}"></span>
-			</div>
-			
-		</th:block> 
-	</div>
-	
-	
-		
+		<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<th:block th:each="error : ${#fields.detailedErrors()}">
+				<div>
+					<i class="fa  fa-exclamation-circle"></i>
+					<span th:text="${error.message}"></span>
+				</div>
+			</th:block>
+		</div>
+
+
+		<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+					<span th:text="${mensagem}"></span>
+		</div>
+
 		<div class="form-group">
 			<label for="nome">Nome</label>
 			<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
@@ -118,10 +117,10 @@
 						<option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="#{|tipoVinho.${tipo}}">
 						</option>
 					</select>
-					
+
 				</div>
 			</div>
-			
+
 			<div class="col-sm-6">
 				<div class="form-group">
 					<label for="valor">Valor</label>
@@ -129,7 +128,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<button class="btn  btn-primary" type="submit">Salvar</button>
 		</div>
@@ -137,7 +136,7 @@
 	</form>
 </div>
 	</section>
-	
+
 	<footer class="aw-layout-footer  js-content">
 		<div class="container-fluid">
 			<span class="aw-footer-disclaimer">&copy; 2016 AlgaWorks. Todos os direitos reservados.</span>
