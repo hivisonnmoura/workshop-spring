@@ -48,12 +48,13 @@
                     <tr th:each="vinho : ${vinhos}">
                         <td th:text="${vinho.codigo}" class="text-center">1</td>
                         <td>
-                            <a href="#" th:text="${vinho.nome}" ></a>
+                            <a th:href="@{/vinhos/{codigo}(codigo=${vinho.codigo})}" th:text="${vinho.nome}" ></a>
                         </td>
                         <td th:text="#{|tipoVinho.${vinho.tipo}|}">Tinto</td>
                         <td th:text="|R$${{vinho.valor}}|" class="text-right">55,00</td>
                         <td class="text-center">
-                            <i class="fa  fa-trash" style="cursor:pointer"></i>
+                            <i class="fa  fa-trash" style="cursor:pointer" data-toggle="modal"
+                            data-target="#confirmarExclusaoModal"></i>
                         </td>
                     </tr>
                     <tr th:if="${vinhos.empty}">
@@ -62,6 +63,26 @@
                     </tbody>
                 </table>
             </div>
+            </div>
+        </div>
+        <!-- Modal confirm excliusion-->
+        <div class="modal fade" id="confirmarExclusaoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form th:action="@{/vinhos}" method="post">
+                         <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title" id="myModalLabel">Confirmar exclusão</h4>
+                         </div>
+                        <div class="modal-body">
+                            <span>Tem certeza ?</span>
+                         </div>
+                         <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary">Confirmar</button>
+                         </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

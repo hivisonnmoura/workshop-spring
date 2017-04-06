@@ -18,7 +18,8 @@ layout:decorate="~{layout/layout-padrao}">
 </div>
 
 <div class="container-fluid">
-	<form method="POST" class="form-vertical  js-form-loading" th:object="${vinho}">
+	<form method="POST" class="form-vertical  js-form-loading"
+		  th:object="${vinho}" th:action="@{/vinhos/novo}">
 		<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<th:block th:each="error : ${#fields.detailedErrors()}">
@@ -33,7 +34,7 @@ layout:decorate="~{layout/layout-padrao}">
 		<div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
 					<span th:text="${mensagem}"></span>
 		</div>
-
+		<input type="hidden" th:field="*{codigo}"/>
 		<div class="form-group">
 			<label for="nome">Nome</label>
 			<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
